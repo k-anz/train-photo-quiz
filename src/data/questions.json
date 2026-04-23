@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "imagePath": "https://picsum.photos/seed/train1/800/600",
+    "answer": "E5系はやぶさ",
+    "choices": ["E5系はやぶさ", "E6系こまち", "N700S のぞみ"]
+  },
+  {
+    "id": 2,
+    "imagePath": "https://picsum.photos/seed/train2/800/600",
+    "answer": "E6系こまち",
+    "choices": ["E5系はやぶさ", "E6系こまち", "700系ひかり"]
+  },
+  {
+    "id": 3,
+    "imagePath": "https://picsum.photos/seed/train3/800/600",
+    "answer": "N700S のぞみ",
+    "choices": ["N700S のぞみ", "500系のぞみ", "E6系こまち"]
+  },
+  {
+    "id": 4,
+    "imagePath": "https://picsum.photos/seed/train4/800/600",
+    "answer": "700系ひかり",
+    "choices": ["700系ひかり", "N700S のぞみ", "E5系はやぶさ"]
+  },
+  {
+    "id": 5,
+    "imagePath": "https://picsum.photos/seed/train5/800/600",
+    "answer": "500系のぞみ",
+    "choices": ["E6系こまち", "700系ひかり", "500系のぞみ"]
+  }
+]
