@@ -1,42 +1,257 @@
-#root {
-  max-width: 1280px;
+/* src/App.css */
+
+/* ── CSS 変数 ── */
+:root {
+  --panel-color: #2563eb;
+  --panel-hover: #1d4ed8;
+  --correct-color: #16a34a;
+  --wrong-color: #dc2626;
+  --bg-color: #0f172a;
+  --text-color: #f1f5f9;
+  --border-radius: 8px;
+  --gap: 3px;
+}
+
+/* ── リセット ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  min-height: 100dvh;
+}
+
+/* ── アプリレイアウト ── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: 480px;
   margin: 0 auto;
+  padding: 0;
+}
+
+/* ── ヘッダー ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.header__question {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.header__score {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4ade80;
+}
+
+/* ── パネルグリッド ── */
+.panel-grid-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.quiz-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.panel-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+/* ── 個別パネル ── */
+.panel {
+  background-color: var(--panel-color);
+  cursor: pointer;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  transform-origin: center;
+}
+
+.panel:hover {
+  background-color: var(--panel-hover);
+}
+
+.panel--open {
+  transform: rotateY(90deg);
+  opacity: 0;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ── 選択肢ボタン ── */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.choice-btn {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #1e293b;
+  color: var(--text-color);
+  border: 2px solid #334155;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.choice-btn:hover:not(:disabled) {
+  background: #334155;
+  border-color: #475569;
+}
+
+.choice-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.choice-btn--shake {
+  animation: shake 0.4s ease;
+  border-color: var(--wrong-color);
+}
+
+/* ── 正解オーバーレイ ── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.overlay--correct {
+  background: rgba(22, 163, 74, 0.88);
+}
+
+.overlay__text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn--primary {
+  padding: 0.75rem 1.75rem;
+  background: #fff;
+  color: var(--correct-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn--primary:hover {
+  opacity: 0.9;
+}
+
+/* ── 不正解トースト ── */
+.toast {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--wrong-color);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
+  animation: slideDown 0.3s ease, fadeOut 0.3s ease 1.2s forwards;
+  z-index: 100;
+}
+
+/* ── スコア画面 ── */
+.final-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 100dvh;
   padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.final-score__result {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.final-score__message {
+  font-size: 1.1rem;
+  color: #94a3b8;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.btn--retry {
+  padding: 0.85rem 2rem;
+  background: var(--panel-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 
-.card {
-  padding: 2em;
+.btn--retry:hover {
+  background: var(--panel-hover);
 }
 
-.read-the-docs {
-  color: #888;
+/* ── アニメーション定義 ── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
