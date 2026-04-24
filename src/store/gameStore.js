@@ -16,6 +16,7 @@ export const useGameStore = create((set, get) => ({
   openedPanels: new Set(),
   phase: 'playing', // 'playing' | 'correct' | 'wrong' | 'finished'
   score: 0,
+  hasWrongedCurrentQuestion: false,
 
   initGame: (questions) =>
     set({
@@ -24,6 +25,7 @@ export const useGameStore = create((set, get) => ({
       openedPanels: new Set(),
       phase: 'playing',
       score: 0,
+      hasWrongedCurrentQuestion: false,
     }),
 
   openPanel: (panelIndex) =>
@@ -38,9 +40,10 @@ export const useGameStore = create((set, get) => ({
     set((state) => {
       const current = state.questions[state.currentIndex]
       if (choice === current.answer) {
-        return { phase: 'correct', score: state.score + 1 }
+        const scoreDelta = state.hasWrongedCurrentQuestion ? 0 : 1
+        return { phase: 'correct', score: state.score + scoreDelta }
       }
-      return { phase: 'wrong' }
+      return { phase: 'wrong', hasWrongedCurrentQuestion: true }
     }),
 
   resumePlaying: () => set({ phase: 'playing' }),
@@ -55,6 +58,7 @@ export const useGameStore = create((set, get) => ({
         currentIndex: nextIndex,
         openedPanels: new Set(),
         phase: 'playing',
+        hasWrongedCurrentQuestion: false,
       }
     }),
 
@@ -65,5 +69,6 @@ export const useGameStore = create((set, get) => ({
       openedPanels: new Set(),
       phase: 'playing',
       score: 0,
+      hasWrongedCurrentQuestion: false,
     })),
 }))
