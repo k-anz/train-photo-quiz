@@ -52,7 +52,7 @@ npm test
 ```json
 {
   "id": 1,
-  "image": "photo.jpg",
+  "imagePath": "photo.jpg",
   "answer": "E5系",
   "choices": ["E5系", "N700系", "500系"]
 }
@@ -61,6 +61,6 @@ npm test
 | フィールド | 説明 |
 |---|---|
 | `id` | 問題のID（一意） |
-| `image` | `public/` 以下の画像パス |
+| `imagePath` | 画像のパスまたはURL |
 | `answer` | 正解の選択肢 |
 | `choices` | 3つの選択肢（正解を含む） |
