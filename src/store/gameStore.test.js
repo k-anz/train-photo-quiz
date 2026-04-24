@@ -14,6 +14,7 @@ beforeEach(() => {
     openedPanels: new Set(),
     phase: 'playing',
     score: 0,
+    hasWrongedCurrentQuestion: false,
   })
 })
 
@@ -59,6 +60,22 @@ describe('submitAnswer', () => {
     expect(state.phase).toBe('wrong')
     expect(state.score).toBe(0)
   })
+
+  it('不正解のときに hasWrongedCurrentQuestion が true になる', () => {
+    useGameStore.setState({ questions: mockQuestions, currentIndex: 0, score: 0, phase: 'playing', hasWrongedCurrentQuestion: false })
+    useGameStore.getState().submitAnswer('電車B')
+    expect(useGameStore.getState().hasWrongedCurrentQuestion).toBe(true)
+  })
+
+  it('一度不正解した後に正解してもスコアは加算されない', () => {
+    useGameStore.setState({ questions: mockQuestions, currentIndex: 0, score: 0, phase: 'playing', hasWrongedCurrentQuestion: false })
+    useGameStore.getState().submitAnswer('電車B') // 不正解
+    useGameStore.getState().resumePlaying()
+    useGameStore.getState().submitAnswer('電車A') // 正解
+    const state = useGameStore.getState()
+    expect(state.phase).toBe('correct')
+    expect(state.score).toBe(0)
+  })
 })
 
 describe('resumePlaying', () => {
@@ -79,6 +96,12 @@ describe('nextQuestion', () => {
     expect(state.phase).toBe('playing')
   })
 
+  it('次の問題に進むときに hasWrongedCurrentQuestion がリセットされる', () => {
+    useGameStore.setState({ questions: mockQuestions, currentIndex: 0, phase: 'correct', hasWrongedCurrentQuestion: true })
+    useGameStore.getState().nextQuestion()
+    expect(useGameStore.getState().hasWrongedCurrentQuestion).toBe(false)
+  })
+
   it('最終問題の次は finished になる', () => {
     useGameStore.setState({ questions: mockQuestions, currentIndex: 1, phase: 'correct' })
     useGameStore.getState().nextQuestion()
@@ -88,7 +111,7 @@ describe('nextQuestion', () => {
 
 describe('resetGame', () => {
   it('スコアと進行をリセットし問題をシャッフルして再開する', () => {
-    useGameStore.setState({ questions: mockQuestions, currentIndex: 1, score: 2, phase: 'finished', openedPanels: new Set([0, 1, 2]) })
+    useGameStore.setState({ questions: mockQuestions, currentIndex: 1, score: 2, phase: 'finished', openedPanels: new Set([0, 1, 2]), hasWrongedCurrentQuestion: true })
     useGameStore.getState().resetGame()
     const state = useGameStore.getState()
     expect(state.currentIndex).toBe(0)
@@ -96,5 +119,6 @@ describe('resetGame', () => {
     expect(state.phase).toBe('playing')
     expect(state.openedPanels.size).toBe(0)
     expect(state.questions).toHaveLength(2)
+    expect(state.hasWrongedCurrentQuestion).toBe(false)
   })
 })
