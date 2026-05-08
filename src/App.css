@@ -148,6 +148,7 @@ body {
   justify-content: center;
   gap: 1rem;
   animation: fadeIn 0.4s ease;
+  transition: background 0.5s ease;
 }
 
 .overlay--correct {
@@ -174,6 +175,33 @@ body {
 
 .btn--primary:hover {
   opacity: 0.9;
+}
+
+.overlay--correct.overlay--faded {
+  background: transparent;
+  pointer-events: none;
+}
+
+.overlay--correct.overlay--faded .btn--next {
+  pointer-events: auto;
+}
+
+.btn--next {
+  padding: 0.75rem 1.75rem;
+  background: #fff;
+  color: var(--correct-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.btn--next:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
 }
 
 /* ── 不正解トースト ── */

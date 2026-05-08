@@ -63,6 +63,7 @@ export default function App() {
       />
       <main style={{ position: 'relative' }}>
         <PanelGrid
+          key={currentIndex}
           imagePath={currentQuestion.imagePath}
           openedPanels={openedPanels}
           onOpenPanel={openPanel}
