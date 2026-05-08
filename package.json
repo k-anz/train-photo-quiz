@@ -11,7 +11,7 @@
     "test:run": "vitest run"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.13"
   },
   "dependencies": {
     "react": "^18.3.1",
