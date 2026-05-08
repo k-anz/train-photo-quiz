@@ -177,31 +177,25 @@ body {
   opacity: 0.9;
 }
 
+.overlay--correct {
+  cursor: pointer;
+}
+
 .overlay--correct.overlay--faded {
   background: transparent;
-  pointer-events: none;
 }
 
-.overlay--correct.overlay--faded .btn--next {
-  pointer-events: auto;
-}
-
-.btn--next {
-  padding: 0.75rem 1.75rem;
-  background: #fff;
-  color: var(--correct-color);
-  border: none;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
+.overlay__hint {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
   font-weight: bold;
-  cursor: pointer;
-  transition: opacity 0.15s, box-shadow 0.15s;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
-}
-
-.btn--next:hover {
-  opacity: 0.9;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
 }
 
 /* ── 不正解トースト ── */
