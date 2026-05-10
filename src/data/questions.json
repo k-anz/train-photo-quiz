@@ -2,31 +2,26 @@
   {
     "id": 1,
     "imagePath": "/train-photo-quiz/images/e5_hayabusa.jpg",
-    "answer": "はやぶさ",
-    "choices": ["はやぶさ", "こまち", "のぞみ"]
+    "answer": "はやぶさ"
   },
   {
     "id": 2,
     "imagePath": "/train-photo-quiz/images/e6_komachi.jpg",
-    "answer": "こまち",
-    "choices": ["はやぶさ", "こまち", "ひかり"]
+    "answer": "こまち"
   },
   {
     "id": 3,
     "imagePath": "/train-photo-quiz/images/n700s_nozomi.jpg",
-    "answer": "のぞみ",
-    "choices": ["のぞみ", "つばさ", "こまち"]
+    "answer": "のぞみ"
   },
   {
     "id": 4,
     "imagePath": "/train-photo-quiz/images/e7_kagayaki.jpg",
-    "answer": "かがやき",
-    "choices": ["かがやき", "のぞみ", "はやぶさ"]
+    "answer": "かがやき"
   },
   {
     "id": 5,
     "imagePath": "/train-photo-quiz/images/500_kodama.jpg",
-    "answer": "こだま",
-    "choices": ["こまち", "ひかり", "こだま"]
+    "answer": "こだま"
   }
 ]
