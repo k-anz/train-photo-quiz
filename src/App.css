@@ -117,7 +117,7 @@ body {
   color: var(--text-color);
   border: 2px solid #334155;
   border-radius: var(--border-radius);
-  font-size: 1rem;
+  font-size: 1.15rem;
   cursor: pointer;
   text-align: left;
   transition: background 0.15s, border-color 0.15s;
