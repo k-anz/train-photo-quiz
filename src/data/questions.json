@@ -2,31 +2,31 @@
   {
     "id": 1,
     "imagePath": "/train-photo-quiz/images/e5_hayabusa.jpg",
-    "answer": "E5系はやぶさ",
-    "choices": ["E5系はやぶさ", "E6系こまち", "N700S のぞみ"]
+    "answer": "はやぶさ",
+    "choices": ["はやぶさ", "こまち", "のぞみ"]
   },
   {
     "id": 2,
     "imagePath": "/train-photo-quiz/images/e6_komachi.jpg",
-    "answer": "E6系こまち",
-    "choices": ["E5系はやぶさ", "E6系こまち", "700系ひかり"]
+    "answer": "こまち",
+    "choices": ["はやぶさ", "こまち", "ひかり"]
   },
   {
     "id": 3,
     "imagePath": "/train-photo-quiz/images/n700s_nozomi.jpg",
-    "answer": "N700S のぞみ",
-    "choices": ["N700S のぞみ", "500系のぞみ", "E6系こまち"]
+    "answer": "のぞみ",
+    "choices": ["のぞみ", "つばさ", "こまち"]
   },
   {
     "id": 4,
     "imagePath": "/train-photo-quiz/images/e7_kagayaki.jpg",
-    "answer": "E7系かがやき",
-    "choices": ["E7系かがやき", "N700S のぞみ", "E5系はやぶさ"]
+    "answer": "かがやき",
+    "choices": ["かがやき", "のぞみ", "はやぶさ"]
   },
   {
     "id": 5,
     "imagePath": "/train-photo-quiz/images/500_kodama.jpg",
-    "answer": "500系こだま",
-    "choices": ["E6系こまち", "700系ひかり", "500系こだま"]
+    "answer": "こだま",
+    "choices": ["こまち", "ひかり", "こだま"]
   }
 ]
