@@ -10,7 +10,7 @@ function shuffle(array) {
   return arr
 }
 
-export const useGameStore = create((set, get) => ({
+export const useGameStore = create((set) => ({
   questions: [],
   currentIndex: 0,
   openedPanels: new Set(),
