@@ -10,6 +10,14 @@ function shuffle(array) {
   return arr
 }
 
+function assignChoices(questions, choicesPerQuestion = 3) {
+  const allAnswers = questions.map((q) => q.answer)
+  return questions.map((q) => {
+    const wrong = shuffle(allAnswers.filter((a) => a !== q.answer)).slice(0, choicesPerQuestion - 1)
+    return { ...q, choices: shuffle([q.answer, ...wrong]) }
+  })
+}
+
 export const useGameStore = create((set) => ({
   questions: [],
   currentIndex: 0,
@@ -20,7 +28,7 @@ export const useGameStore = create((set) => ({
 
   initGame: (questions) =>
     set({
-      questions: shuffle(questions),
+      questions: assignChoices(shuffle(questions)),
       currentIndex: 0,
       openedPanels: new Set(),
       phase: 'playing',
@@ -64,7 +72,7 @@ export const useGameStore = create((set) => ({
 
   resetGame: () =>
     set((state) => ({
-      questions: shuffle([...state.questions]),
+      questions: assignChoices(shuffle([...state.questions])),
       currentIndex: 0,
       openedPanels: new Set(),
       phase: 'playing',
